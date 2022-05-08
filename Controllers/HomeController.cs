@@ -1,8 +1,6 @@
-﻿using Knowledgebase.Models;
-
+﻿using System.Diagnostics;
+using Knowledgebase.Models;
 using Microsoft.AspNetCore.Mvc;
-
-using System.Diagnostics;
 
 namespace Knowledgebase.Controllers
 {
