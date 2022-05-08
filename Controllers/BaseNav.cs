@@ -1,7 +1,7 @@
 ﻿using Knowledgebase.Services;
 using Microsoft.AspNetCore.Mvc;
 
-namespace Knowledge.Controllers
+namespace KnowledgeBase.Controllers
 {
     public class BaseNav : Controller
     {

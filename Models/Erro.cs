@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace Knowledge.Models
+namespace KnowledgeBase.Models
 {
     [Table("Erros")]
     public class Erro
