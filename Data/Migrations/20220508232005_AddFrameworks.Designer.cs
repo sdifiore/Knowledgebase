@@ -4,6 +4,7 @@ using Knowledgebase.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Knowledgebase.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220508232005_AddFrameworks")]
+    partial class AddFrameworks
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -21,32 +23,6 @@ namespace Knowledgebase.Data.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
-
-            modelBuilder.Entity("Knowledge.Models.Artigo", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
-
-                    b.Property<string>("Chamada")
-                        .IsRequired()
-                        .HasMaxLength(64)
-                        .HasColumnType("nvarchar(64)");
-
-                    b.Property<string>("Corpo")
-                        .IsRequired()
-                        .HasMaxLength(10240)
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("DiaMesAno")
-                        .HasColumnType("datetime2");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Artigos");
-                });
 
             modelBuilder.Entity("Knowledge.Models.Autor", b =>
                 {
@@ -56,17 +32,12 @@ namespace Knowledgebase.Data.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<int?>("ArtigoId")
-                        .HasColumnType("int");
-
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("ArtigoId");
 
                     b.ToTable("Autores");
                 });
@@ -79,17 +50,12 @@ namespace Knowledgebase.Data.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<int?>("ArtigoId")
-                        .HasColumnType("int");
-
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("ArtigoId");
 
                     b.ToTable("Fontes");
                 });
@@ -107,9 +73,6 @@ namespace Knowledgebase.Data.Migrations
                         .HasMaxLength(4)
                         .HasColumnType("nvarchar(4)");
 
-                    b.Property<int?>("ArtigoId")
-                        .HasColumnType("int");
-
                     b.Property<string>("Descricao")
                         .IsRequired()
                         .HasMaxLength(64)
@@ -121,48 +84,8 @@ namespace Knowledgebase.Data.Migrations
                         .HasColumnType("nvarchar(16)");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("ArtigoId");
 
                     b.ToTable("Frameworks");
-                });
-
-            modelBuilder.Entity("Knowledge.Models.Plataforma", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
-
-                    b.Property<string>("Apelido")
-                        .IsRequired()
-                        .HasMaxLength(4)
-                        .HasColumnType("nvarchar(4)");
-
-                    b.Property<int?>("ArtigoId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Descricao")
-                        .IsRequired()
-                        .HasMaxLength(64)
-                        .HasColumnType("nvarchar(64)");
-
-                    b.Property<int>("FrameworkId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Versao")
-                        .IsRequired()
-                        .HasMaxLength(16)
-                        .HasColumnType("nvarchar(16)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("ArtigoId");
-
-                    b.HasIndex("FrameworkId");
-
-                    b.ToTable("Plataformas");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -367,42 +290,6 @@ namespace Knowledgebase.Data.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
-            modelBuilder.Entity("Knowledge.Models.Autor", b =>
-                {
-                    b.HasOne("Knowledge.Models.Artigo", null)
-                        .WithMany("Autores")
-                        .HasForeignKey("ArtigoId");
-                });
-
-            modelBuilder.Entity("Knowledge.Models.Fonte", b =>
-                {
-                    b.HasOne("Knowledge.Models.Artigo", null)
-                        .WithMany("Fontes")
-                        .HasForeignKey("ArtigoId");
-                });
-
-            modelBuilder.Entity("Knowledge.Models.Framework", b =>
-                {
-                    b.HasOne("Knowledge.Models.Artigo", null)
-                        .WithMany("Frameworks")
-                        .HasForeignKey("ArtigoId");
-                });
-
-            modelBuilder.Entity("Knowledge.Models.Plataforma", b =>
-                {
-                    b.HasOne("Knowledge.Models.Artigo", null)
-                        .WithMany("Plataformas")
-                        .HasForeignKey("ArtigoId");
-
-                    b.HasOne("Knowledge.Models.Framework", "Framework")
-                        .WithMany()
-                        .HasForeignKey("FrameworkId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Framework");
-                });
-
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
                 {
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole", null)
@@ -452,17 +339,6 @@ namespace Knowledgebase.Data.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-                });
-
-            modelBuilder.Entity("Knowledge.Models.Artigo", b =>
-                {
-                    b.Navigation("Autores");
-
-                    b.Navigation("Fontes");
-
-                    b.Navigation("Frameworks");
-
-                    b.Navigation("Plataformas");
                 });
 #pragma warning restore 612, 618
         }
