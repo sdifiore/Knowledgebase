@@ -1,15 +1,16 @@
-﻿using Knowledgebase.Services;
+﻿using Knowledgebase.Data;
+using Knowledgebase.Services;
 using Microsoft.AspNetCore.Mvc;
 
 namespace KnowledgeBase.Controllers
 {
     public class BaseNav : Controller
     {
-        private readonly Repository _repository;
+        private readonly ApplicationDbContext _context;
 
-        public BaseNav(Repository repository)
+        public BaseNav(ApplicationDbContext context)
         {
-            _repository = repository;
+            _context = context;
         }
 
         public IActionResult NewFrame()
@@ -19,7 +20,7 @@ namespace KnowledgeBase.Controllers
 
         public IActionResult QuerySolutionChooseFrame()
         {
-            var frameworks = _repository.GetFrameworks();
+            var frameworks = _context.Frameworks.ToList();
 
             return View(frameworks);
         }
