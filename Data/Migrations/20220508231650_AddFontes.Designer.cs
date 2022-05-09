@@ -24,7 +24,7 @@ namespace Knowledgebase.Data.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
 
-            modelBuilder.Entity("Knowledge.Models.Autor", b =>
+            modelBuilder.Entity("KnowledgeBase.Models.Autor", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -42,7 +42,7 @@ namespace Knowledgebase.Data.Migrations
                     b.ToTable("Autores");
                 });
 
-            modelBuilder.Entity("Knowledge.Models.Fonte", b =>
+            modelBuilder.Entity("KnowledgeBase.Models.Fonte", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()

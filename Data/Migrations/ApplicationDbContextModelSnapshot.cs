@@ -22,7 +22,7 @@ namespace Knowledgebase.Data.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
 
-            modelBuilder.Entity("Knowledge.Models.Artigo", b =>
+            modelBuilder.Entity("KnowledgeBase.Models.Artigo", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -48,7 +48,7 @@ namespace Knowledgebase.Data.Migrations
                     b.ToTable("Artigos");
                 });
 
-            modelBuilder.Entity("Knowledge.Models.Autor", b =>
+            modelBuilder.Entity("KnowledgeBase.Models.Autor", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -76,7 +76,7 @@ namespace Knowledgebase.Data.Migrations
                     b.ToTable("Autores");
                 });
 
-            modelBuilder.Entity("Knowledge.Models.Erro", b =>
+            modelBuilder.Entity("KnowledgeBase.Models.Erro", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -103,7 +103,7 @@ namespace Knowledgebase.Data.Migrations
                     b.ToTable("Erros");
                 });
 
-            modelBuilder.Entity("Knowledge.Models.Fonte", b =>
+            modelBuilder.Entity("KnowledgeBase.Models.Fonte", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -131,7 +131,7 @@ namespace Knowledgebase.Data.Migrations
                     b.ToTable("Fontes");
                 });
 
-            modelBuilder.Entity("Knowledge.Models.Framework", b =>
+            modelBuilder.Entity("KnowledgeBase.Models.Framework", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -164,7 +164,7 @@ namespace Knowledgebase.Data.Migrations
                     b.ToTable("Frameworks");
                 });
 
-            modelBuilder.Entity("Knowledge.Models.Plataforma", b =>
+            modelBuilder.Entity("KnowledgeBase.Models.Plataforma", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -409,46 +409,46 @@ namespace Knowledgebase.Data.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
-            modelBuilder.Entity("Knowledge.Models.Autor", b =>
+            modelBuilder.Entity("KnowledgeBase.Models.Autor", b =>
                 {
-                    b.HasOne("Knowledge.Models.Artigo", null)
+                    b.HasOne("KnowledgeBase.Models.Artigo", null)
                         .WithMany("Autores")
                         .HasForeignKey("ArtigoId");
 
-                    b.HasOne("Knowledge.Models.Erro", null)
+                    b.HasOne("KnowledgeBase.Models.Erro", null)
                         .WithMany("Autores")
                         .HasForeignKey("ErroId");
                 });
 
-            modelBuilder.Entity("Knowledge.Models.Fonte", b =>
+            modelBuilder.Entity("KnowledgeBase.Models.Fonte", b =>
                 {
-                    b.HasOne("Knowledge.Models.Artigo", null)
+                    b.HasOne("KnowledgeBase.Models.Artigo", null)
                         .WithMany("Fontes")
                         .HasForeignKey("ArtigoId");
 
-                    b.HasOne("Knowledge.Models.Erro", null)
+                    b.HasOne("KnowledgeBase.Models.Erro", null)
                         .WithMany("Fontes")
                         .HasForeignKey("ErroId");
                 });
 
-            modelBuilder.Entity("Knowledge.Models.Framework", b =>
+            modelBuilder.Entity("KnowledgeBase.Models.Framework", b =>
                 {
-                    b.HasOne("Knowledge.Models.Artigo", null)
+                    b.HasOne("KnowledgeBase.Models.Artigo", null)
                         .WithMany("Frameworks")
                         .HasForeignKey("ArtigoId");
                 });
 
-            modelBuilder.Entity("Knowledge.Models.Plataforma", b =>
+            modelBuilder.Entity("KnowledgeBase.Models.Plataforma", b =>
                 {
-                    b.HasOne("Knowledge.Models.Artigo", null)
+                    b.HasOne("KnowledgeBase.Models.Artigo", null)
                         .WithMany("Plataformas")
                         .HasForeignKey("ArtigoId");
 
-                    b.HasOne("Knowledge.Models.Erro", null)
+                    b.HasOne("KnowledgeBase.Models.Erro", null)
                         .WithMany("Plataformas")
                         .HasForeignKey("ErroId");
 
-                    b.HasOne("Knowledge.Models.Framework", "Framework")
+                    b.HasOne("KnowledgeBase.Models.Framework", "Framework")
                         .WithMany()
                         .HasForeignKey("FrameworkId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -508,7 +508,7 @@ namespace Knowledgebase.Data.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("Knowledge.Models.Artigo", b =>
+            modelBuilder.Entity("KnowledgeBase.Models.Artigo", b =>
                 {
                     b.Navigation("Autores");
 
@@ -519,7 +519,7 @@ namespace Knowledgebase.Data.Migrations
                     b.Navigation("Plataformas");
                 });
 
-            modelBuilder.Entity("Knowledge.Models.Erro", b =>
+            modelBuilder.Entity("KnowledgeBase.Models.Erro", b =>
                 {
                     b.Navigation("Autores");
 

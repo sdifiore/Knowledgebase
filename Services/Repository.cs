@@ -1,4 +1,4 @@
-﻿using Knowledge.Models;
+﻿using KnowledgeBase.Models;
 using Knowledgebase.Data;
 
 namespace Knowledgebase.Services

@@ -24,7 +24,7 @@ namespace Knowledgebase.Data.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
 
-            modelBuilder.Entity("Knowledge.Models.Autor", b =>
+            modelBuilder.Entity("KnowledgeBase.Models.Autor", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -42,7 +42,7 @@ namespace Knowledgebase.Data.Migrations
                     b.ToTable("Autores");
                 });
 
-            modelBuilder.Entity("Knowledge.Models.Fonte", b =>
+            modelBuilder.Entity("KnowledgeBase.Models.Fonte", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -60,7 +60,7 @@ namespace Knowledgebase.Data.Migrations
                     b.ToTable("Fontes");
                 });
 
-            modelBuilder.Entity("Knowledge.Models.Framework", b =>
+            modelBuilder.Entity("KnowledgeBase.Models.Framework", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -88,7 +88,7 @@ namespace Knowledgebase.Data.Migrations
                     b.ToTable("Frameworks");
                 });
 
-            modelBuilder.Entity("Knowledge.Models.Plataforma", b =>
+            modelBuilder.Entity("KnowledgeBase.Models.Plataforma", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -323,9 +323,9 @@ namespace Knowledgebase.Data.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
-            modelBuilder.Entity("Knowledge.Models.Plataforma", b =>
+            modelBuilder.Entity("KnowledgeBase.Models.Plataforma", b =>
                 {
-                    b.HasOne("Knowledge.Models.Framework", "Framework")
+                    b.HasOne("KnowledgeBase.Models.Framework", "Framework")
                         .WithMany()
                         .HasForeignKey("FrameworkId")
                         .OnDelete(DeleteBehavior.Cascade)

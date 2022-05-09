@@ -12,11 +12,6 @@ namespace KnowledgeBase.Controllers
             _repository = repository;
         }
 
-        public IActionResult Index()
-        {
-            return View();
-        }
-
         public IActionResult NewFrame()
         {
             return View();

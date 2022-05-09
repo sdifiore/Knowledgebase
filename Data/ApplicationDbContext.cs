@@ -1,4 +1,4 @@
-﻿using Knowledge.Models;
+﻿using KnowledgeBase.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 
