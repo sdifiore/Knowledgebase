@@ -1,5 +1,4 @@
 ﻿using Knowledgebase.Data;
-using Knowledgebase.Services;
 using Microsoft.AspNetCore.Mvc;
 
 namespace KnowledgeBase.Controllers
