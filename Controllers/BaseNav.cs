@@ -11,7 +11,7 @@ namespace KnowledgeBase.Controllers
         {
             _context = context;
         }
-
+        
         public IActionResult NewFrame()
         {
             return View();
