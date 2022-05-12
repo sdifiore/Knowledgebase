@@ -1,6 +1,8 @@
 namespace KnowledgeBase.Models
-
-public interface IRepository()
 {
-    IENumerable<Framework> GetFrameworks();
+    public interface IRepository
+    {
+        IEnumerable<Framework> GetFrameworks();
+   
+    }
 }
