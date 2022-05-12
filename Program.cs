@@ -1,10 +1,13 @@
 using Knowledgebase.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Identity;
+using KnowledgeBase.Models;
+using Knowledgebase.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 var connectionString = builder.Configuration.GetConnectionString("KbConnection"); ;
 
+builder.Services.AddScoped<IRepository, Repository>();
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseSqlServer(connectionString)); ;
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();

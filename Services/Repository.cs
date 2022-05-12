@@ -14,7 +14,7 @@ namespace Knowledgebase.Services
 
         public IEnumerable<Framework> GetFrameworks()
         {
-            return _context.Frameworks;
+            return _context.Frameworks.ToList();
         }
     }
 }
