@@ -1,8 +1,8 @@
-﻿using Knowledgebase.Data;
-
-using KnowledgeBase.Models;
+﻿using KnowledgeBase.Models;
 
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.Data.OData.Query.SemanticAst;
 
 namespace KnowledgeBase.Controllers
 {
@@ -22,9 +22,15 @@ namespace KnowledgeBase.Controllers
 
         public IActionResult QuerySolutionChooseFrame()
         {
+            var items = new List<SelectList>();
             var frameworks = _repository.GetFrameworks();
 
-            return View(frameworks);
+            foreach (var framework in frameworks)
+            {
+                items.Add(new SelectList($"{framework.Descricao} - Versão {framework.Versao}", framework.Id.ToString()));
+            }
+
+            return View(items);
         }
     }
 }

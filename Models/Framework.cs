@@ -14,7 +14,7 @@ namespace KnowledgeBase.Models
 
         [Required]
         [StringLength(64)]
-        public string? Descricao { get; set; } = string.Empty;
+        public string Descricao { get; set; } = string.Empty;
 
         [Required]
         [StringLength(16)]
