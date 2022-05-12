@@ -16,7 +16,7 @@
     @using(Html.BeginForm("Id", "Framework", FormMethod.Get))
     {   <fieldset>
             <legend>Framework</legend>
-            @Html.DropDownListFor(f => f.Id, Model, new SelectList(Model, "Id", "Name"))
+            @*@Html.DropDownListFor(f => f.Id, Model, new SelectList(Model, "Id", "Name"))*@
             <p >
                 <input type="submit" value="Submit" />
         </p>
