@@ -2,9 +2,8 @@
 
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
-using Microsoft.Data.OData.Query.SemanticAst;
 
-namespace KnowledgeBase.Controllers
+
 {
     public class BaseNav : Controller
     {
