@@ -3,7 +3,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 
-
+namespace KnowledgeBase.Controllers
 {
     public class BaseNav : Controller
     {
@@ -21,13 +21,8 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 
         public IActionResult QuerySolutionChooseFrame()
         {
-            var items = new List<SelectList>();
-            var frameworks = _repository.GetFrameworks();
-
-            foreach (var framework in frameworks)
-            {
-                items.Add(new SelectList($"{framework.Descricao} - Versão {framework.Versao}", framework.Id.ToString()));
-            }
+        var frameworks = _repository.GetFrameworks();
+        var items = new SelectList(frameworks, "Id", "Descricao");
 
             return View(items);
         }
