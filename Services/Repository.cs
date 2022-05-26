@@ -12,9 +12,11 @@ namespace Knowledgebase.Services
             _context = context;
         }
 
-        public IEnumerable<Framework> GetAllFrameworks()
+        public IEnumerable<Framework> GetAllFrameworksSorted()
         {
-            return _context.Frameworks.ToList();
+            return _context.Frameworks
+                .OrderBy(f => f.Apelido)
+                .ToList();
         }
     }
 }
