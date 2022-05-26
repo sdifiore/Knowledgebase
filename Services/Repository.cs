@@ -12,7 +12,7 @@ namespace Knowledgebase.Services
             _context = context;
         }
 
-        public IEnumerable<Framework> GetFrameworks()
+        public IEnumerable<Framework> GetAllFrameworks()
         {
             return _context.Frameworks.ToList();
         }
