@@ -25,14 +25,16 @@ namespace KnowledgeBase.Controllers
         {
         var frameworks = _repository.GetAllFrameworksSorted();
 
-            return View(frameworks);
+        return View(frameworks);
         }
 
         [HttpPost]
         [Authorize]
         public ViewResult SearchFrame(string searchString)
         {
-            return View();
+            var frameworks = _repository.SearchFrame(searchString);
+
+            return View("QuerySolutionChooseFrame", frameworks);
         }
     }
 }

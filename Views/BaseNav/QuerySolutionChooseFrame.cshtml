@@ -9,10 +9,10 @@
 <h1>Query Solution Choose: Framework</h1>
 <h2>Índice de "Frameworks"</h2>
 
-@using (Html.BeginForm("Search", "BaseNav", FormMethod.Post))
+@using (Html.BeginForm("SearchFrame", "BaseNav", FormMethod.Post))
 {
     <p>
-        @Html.TextBox("search")
+        @Html.TextBox("searchString")
         <input class="input-group-text btn btn-primary btn-sm" type="submit" value="Procurar" />
     </p>
 }
