@@ -15,8 +15,7 @@ namespace Knowledgebase.Services
         public IEnumerable<Framework> GetAllFrameworksSorted()
         {
             return _context.Frameworks
-                .OrderBy(f => f.Apelido)
-                .ToList();
+                .OrderBy(f => f.Apelido);
         }
     }
 }

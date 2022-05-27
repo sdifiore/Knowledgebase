@@ -21,7 +21,7 @@ namespace KnowledgeBase.Controllers
 
         public IActionResult QuerySolutionChooseFrame()
         {
-        var frameworks = _repository.GetAllFrameworks();
+        var frameworks = _repository.GetAllFrameworksSorted();
 
             return View(frameworks);
         }
