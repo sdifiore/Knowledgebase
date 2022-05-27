@@ -19,7 +19,7 @@
 
 
 <p>
-    <a asp-action="Create">Criar Nova</a>
+    <a asp-action="Create">Criar Novo</a>
 
     <table class="table table-hover table-responsive">
     <tr>
@@ -43,6 +43,9 @@
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Descricao)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Versao)
             </td>
             <td>
                 @Html.ActionLink("Alterar", "Edit", new { id = item.Id })
