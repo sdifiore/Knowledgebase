@@ -17,5 +17,12 @@ namespace Knowledgebase.Services
             return _context.Frameworks
                 .OrderBy(f => f.Apelido);
         }
+
+        public IEnumerable<Framework> SearchFrame(string searchString)
+        {
+            return _context.Frameworks
+                .Where(f => f.Descricao.Contains(searchString))
+                .OrderBy(f => f.Apelido);
+        }
     }
 }

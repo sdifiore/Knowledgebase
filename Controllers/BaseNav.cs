@@ -1,5 +1,6 @@
 ﻿using KnowledgeBase.Models;
 
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 
@@ -19,11 +20,19 @@ namespace KnowledgeBase.Controllers
             return View();
         }
 
+        [Authorize]
         public IActionResult QuerySolutionChooseFrame()
         {
         var frameworks = _repository.GetAllFrameworksSorted();
 
             return View(frameworks);
+        }
+
+        [HttpPost]
+        [Authorize]
+        public ViewResult SearchFrame(string searchString)
+        {
+            return View();
         }
     }
 }
