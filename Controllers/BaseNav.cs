@@ -14,7 +14,9 @@ namespace KnowledgeBase.Controllers
         {
             _repository = repository;
         }
-        
+
+
+        [Authorize]
         public IActionResult NewFrame()
         {
             return View();
