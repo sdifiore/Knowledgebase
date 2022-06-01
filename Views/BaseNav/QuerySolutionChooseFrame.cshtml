@@ -20,7 +20,8 @@
 
 <p>
     <a asp-action="NewFrame">Criar Novo</a>
-
+</p>
+    
     <table class="table table-hover table-responsive">
     <tr>
         <th>
@@ -32,7 +33,9 @@
         <th>
             @Html.DisplayNameFor(model => model.Versao)
         </th>
-        <th></th>
+        <th>
+            Ação
+        </th>
     </tr>
 
     @foreach (var item in Model)
@@ -48,6 +51,7 @@
                 @Html.DisplayFor(modelItem => item.Versao)
             </td>
             <td>
+               <td>
                 @Html.ActionLink("Alterar", "Edit", new { id = item.Id })
                 @Html.ActionLink("Detalhes", "Details", new { id = item.Id })
                 @Html.ActionLink("Eliminar", "Delete", new { id = item.Id })

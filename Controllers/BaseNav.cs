@@ -16,11 +16,35 @@ namespace KnowledgeBase.Controllers
         }
 
 
+        [HttpPost]
         [Authorize]
-        public IActionResult NewFrame()
+        [ValidateAntiForgeryToken]
+        public IActionResult NewFrame(Framework framework)
+        {
+            _repository.NewFrame(framework);
+
+            return RedirectToAction("NewFrame");
+        }
+
+
+        [Authorize]
+        public ActionResult Delete(int? id)
         {
             return View();
         }
+
+        [Authorize]
+        public ActionResult Details(int? id)
+        {
+            return View();
+        }
+
+        [Authorize]
+        public ActionResult Edit(int? id)
+        {
+            return View();
+        }
+
 
         [Authorize]
         public IActionResult QuerySolutionChooseFrame()
