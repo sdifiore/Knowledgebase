@@ -4,7 +4,7 @@ namespace KnowledgeBase.Models
 {
     public interface IRepository
     {
-        Task NewFrame(Framework framework);
+        Task SaveNewFrame(Framework framework);
         IEnumerable<Framework> SearchFrame(string searchString);
         IEnumerable<Framework> GetAllFrameworksSorted();
 
