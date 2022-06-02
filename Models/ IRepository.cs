@@ -8,5 +8,6 @@ namespace KnowledgeBase.Models
         IEnumerable<Framework> GetAllFrameworksSorted();
         IEnumerable<Framework> SearchFrame(string searchString);
         void SaveNewFrame(Framework framework);
+        void UpdateFrame(Framework framework);
     }
 }

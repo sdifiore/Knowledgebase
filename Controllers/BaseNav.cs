@@ -54,9 +54,9 @@ namespace KnowledgeBase.Controllers
         [Authorize]
         public IActionResult QuerySolutionChooseFrame()
         {
-        var frameworks = _repository.GetAllFrameworksSorted();
+            var frameworks = _repository.GetAllFrameworksSorted();
 
-        return View(frameworks);
+            return View(frameworks);
         }
 
         [HttpPost]

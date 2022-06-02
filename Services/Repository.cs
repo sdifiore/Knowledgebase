@@ -1,8 +1,6 @@
 using Knowledgebase.Data;
 using KnowledgeBase.Models;
 
-using Microsoft.AspNetCore.Mvc;
-
 namespace Knowledgebase.Services
 {
     public class Repository : IRepository
@@ -36,6 +34,11 @@ namespace Knowledgebase.Services
             return _context.Frameworks
                 .Where(f => f.Descricao.Contains(searchString))
                 .OrderBy(f => f.Apelido);
+        }
+
+        public void UpdateFrame(Framework framework)
+        {
+            _context.Frameworks.Update(framework);
         }
     }
 }
