@@ -27,7 +27,7 @@ namespace KnowledgeBase.Controllers
         {
             _repository.SaveNewFrame(framework);
 
-            return RedirectToAction("NewFrame");
+            return RedirectToAction("QuerySolutionChooseFrame");
         }
 
 

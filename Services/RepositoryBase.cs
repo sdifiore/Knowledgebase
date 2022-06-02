@@ -14,10 +14,10 @@ namespace Knowledgebase.Services
                 .OrderBy(f => f.Apelido);
         }
 
-        public async Task SaveNewFrame(Framework framework)
+        public void SaveNewFrame(Framework framework)
         {
             _context.Frameworks.Add(framework);
-            await _context.SaveChangesAsync();
+            _context.SaveChanges();
         }
 
         public IEnumerable<Framework> SearchFrame(string searchString)
