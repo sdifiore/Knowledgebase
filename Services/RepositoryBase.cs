@@ -14,6 +14,12 @@ namespace Knowledgebase.Services
                 .OrderBy(f => f.Apelido);
         }
 
+        public Framework GetFrameById(int id)
+        {
+            return _context.Frameworks
+                .FirstOrDefault(f => f.Id == id);
+        }   
+
         public void SaveNewFrame(Framework framework)
         {
             _context.Frameworks.Add(framework);
