@@ -16,9 +16,9 @@ namespace KnowledgeBase.Controllers
         }
 
 
-        [HttpPost]
+        //[HttpPost]
         [Authorize]
-        [ValidateAntiForgeryToken]
+        //[ValidateAntiForgeryToken]
         public IActionResult NewFrame(Framework framework)
         {
             _repository.NewFrame(framework);

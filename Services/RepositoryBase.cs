@@ -14,7 +14,7 @@ namespace Knowledgebase.Services
                 .OrderBy(f => f.Apelido);
         }
 
-        public async Task<Framework> NewFrame(Framework framework)
+        public async Task NewFrame(Framework framework)
         {
             _context.Frameworks.Add(framework);
             await _context.SaveChangesAsync();
