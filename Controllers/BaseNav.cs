@@ -17,7 +17,6 @@ namespace KnowledgeBase.Controllers
 
 
         [Authorize]
-        //[ValidateAntiForgeryToken]
         public IActionResult NewFrame()
         {
             return View();
@@ -44,9 +43,11 @@ namespace KnowledgeBase.Controllers
         }
 
         [Authorize]
-        public ActionResult Edit(int? id)
+        public ActionResult Edit(int id)
         {
-            return View();
+            var model = _repository.GetFrameById(id);
+            { }
+            return View(model);
         }
 
 
@@ -60,7 +61,7 @@ namespace KnowledgeBase.Controllers
 
         [HttpPost]
         [Authorize]
-        public ViewResult SearchFrame(string searchString)
+        public IActionResult SearchFrame(string searchString)
         {
             var frameworks = _repository.SearchFrame(searchString);
 
