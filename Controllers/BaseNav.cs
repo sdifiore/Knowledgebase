@@ -40,13 +40,23 @@ namespace KnowledgeBase.Controllers
             return View();
         }
 
-        [Authorize]
-        public ActionResult Details(int? id)
+        public async Task<IActionResult> Details(int? id)
         {
-            return View();
+            if (id == null || _context.Frameworks == null)
+            {
+                return NotFound();
+            }
+
+            var framework = await _context.Frameworks
+                .FirstOrDefaultAsync(m => m.Id == id);
+            if (framework == null)
+            {
+                return NotFound();
+            }
+
+            return View(framework);
         }
 
-        [Authorize]
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null || _context.Frameworks == null)
