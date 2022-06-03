@@ -4,7 +4,7 @@ using KnowledgeBase.Models;
 
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.EntityFrameworkCore;
 
 namespace KnowledgeBase.Controllers
 {
@@ -47,11 +47,51 @@ namespace KnowledgeBase.Controllers
         }
 
         [Authorize]
-        public ActionResult Edit(int id)
+        public async Task<IActionResult> Edit(int? id)
         {
-            var model = _repository.GetFrameById(id);
-            { }
-            return View(model);
+            if (id == null || _context.Frameworks == null)
+            {
+                return NotFound();
+            }
+
+            var framework = await _context.Frameworks.FindAsync(id);
+            if (framework == null)
+            {
+                return NotFound();
+            }
+            return View(framework);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Apelido,Descricao,Versao")] Framework framework)
+        {
+            if (id != framework.Id)
+            {
+                return NotFound();
+            }
+
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    _context.Update(framework);
+                    await _context.SaveChangesAsync();
+                }
+                catch (DbUpdateConcurrencyException)
+                {
+                    if (!FrameworkExists(framework.Id))
+                    {
+                        return NotFound();
+                    }
+                    else
+                    {
+                        throw;
+                    }
+                }
+                return RedirectToAction(nameof(QuerySolutionChooseFrame));
+            }
+            return View(framework);
         }
 
 
@@ -70,6 +110,11 @@ namespace KnowledgeBase.Controllers
             var frameworks = _repository.SearchFrame(searchString);
 
             return View("QuerySolutionChooseFrame", frameworks);
+        }
+
+        private bool FrameworkExists(int id)
+        {
+            return (_context.Frameworks?.Any(e => e.Id == id)).GetValueOrDefault();
         }
     }
 }
