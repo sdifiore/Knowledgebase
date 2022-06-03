@@ -1,4 +1,6 @@
-﻿using KnowledgeBase.Models;
+﻿using Knowledgebase.Data;
+
+using KnowledgeBase.Models;
 
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -8,10 +10,12 @@ namespace KnowledgeBase.Controllers
 {
     public class BaseNav : Controller
     {
+        private readonly ApplicationDbContext _context;
         private readonly IRepository _repository;
 
-        public BaseNav(IRepository repository)
+        public BaseNav(ApplicationDbContext context, IRepository repository)
         {
+            _context = context;
             _repository = repository;
         }
 
