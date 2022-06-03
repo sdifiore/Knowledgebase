@@ -34,10 +34,39 @@ namespace KnowledgeBase.Controllers
         }
 
 
-        [Authorize]
-        public ActionResult Delete(int? id)
+        public async Task<IActionResult> Delete(int? id)
         {
-            return View();
+            if (id == null || _context.Frameworks == null)
+            {
+                return NotFound();
+            }
+
+            var framework = await _context.Frameworks
+                .FirstOrDefaultAsync(m => m.Id == id);
+            if (framework == null)
+            {
+                return NotFound();
+            }
+
+            return View(framework);
+        }
+
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> DeleteConfirmed(int id)
+        {
+            if (_context.Frameworks == null)
+            {
+                return Problem("Entity set 'ApplicationDbContext.Frameworks'  is null.");
+            }
+            var framework = await _context.Frameworks.FindAsync(id);
+            if (framework != null)
+            {
+                _context.Frameworks.Remove(framework);
+            }
+
+            await _context.SaveChangesAsync();
+            return RedirectToAction(nameof(QuerySolutionChooseFrame));
         }
 
         public async Task<IActionResult> Details(int? id)
