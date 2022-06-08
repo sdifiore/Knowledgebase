@@ -45,7 +45,7 @@ namespace Knowledgebase.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Artigos");
+                    b.ToTable("Artigos", (string)null);
                 });
 
             modelBuilder.Entity("KnowledgeBase.Models.Autor", b =>
@@ -73,7 +73,7 @@ namespace Knowledgebase.Data.Migrations
 
                     b.HasIndex("ErroId");
 
-                    b.ToTable("Autores");
+                    b.ToTable("Autores", (string)null);
                 });
 
             modelBuilder.Entity("KnowledgeBase.Models.Erro", b =>
@@ -100,7 +100,7 @@ namespace Knowledgebase.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Erros");
+                    b.ToTable("Erros", (string)null);
                 });
 
             modelBuilder.Entity("KnowledgeBase.Models.Fonte", b =>
@@ -128,7 +128,7 @@ namespace Knowledgebase.Data.Migrations
 
                     b.HasIndex("ErroId");
 
-                    b.ToTable("Fontes");
+                    b.ToTable("Fontes", (string)null);
                 });
 
             modelBuilder.Entity("KnowledgeBase.Models.Framework", b =>
@@ -161,7 +161,7 @@ namespace Knowledgebase.Data.Migrations
 
                     b.HasIndex("ArtigoId");
 
-                    b.ToTable("Frameworks");
+                    b.ToTable("Frameworks", (string)null);
                 });
 
             modelBuilder.Entity("KnowledgeBase.Models.Plataforma", b =>
@@ -204,7 +204,7 @@ namespace Knowledgebase.Data.Migrations
 
                     b.HasIndex("FrameworkId");
 
-                    b.ToTable("Plataformas");
+                    b.ToTable("Plataformas", (string)null);
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>

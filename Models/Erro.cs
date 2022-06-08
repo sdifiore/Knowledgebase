@@ -19,7 +19,6 @@ namespace KnowledgeBase.Models
         [StringLength(64)]
         public string? Fonte { get; set; } = string.Empty;
 
-        [Required]
         public List<Autor>? Autores { get; set; }
 
         public HashSet<Fonte>? Fontes { get; set; }
