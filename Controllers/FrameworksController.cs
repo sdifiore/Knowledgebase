@@ -1,95 +1,91 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using KnowledgeBase.Models;
 using Knowledgebase.Data;
 
 namespace Knowledgebase.Controllers
 {
-    public class PlataformasController : Controller
+    public class FrameworksController : Controller
     {
         private readonly ApplicationDbContext _context;
 
-        public PlataformasController(ApplicationDbContext context)
+        public FrameworksController(ApplicationDbContext context)
         {
             _context = context;
         }
 
-        // GET: Plataformas
+        // GET: Frameworks
         public async Task<IActionResult> Index()
         {
-            var applicationDbContext = _context.Plataformas.Include(p => p.Framework);
-            return View(await applicationDbContext.ToListAsync());
+              return _context.Frameworks != null ? 
+                          View(await _context.Frameworks.ToListAsync()) :
+                          Problem("Entity set 'ApplicationDbContext.Frameworks'  is null.");
         }
 
-        // GET: Plataformas/Details/5
+        // GET: Frameworks/Details/5
         public async Task<IActionResult> Details(int? id)
         {
-            if (id == null || _context.Plataformas == null)
+            if (id == null || _context.Frameworks == null)
             {
                 return NotFound();
             }
 
-            var plataforma = await _context.Plataformas
-                .Include(p => p.Framework)
+            var framework = await _context.Frameworks
                 .FirstOrDefaultAsync(m => m.Id == id);
-            if (plataforma == null)
+            if (framework == null)
             {
                 return NotFound();
             }
 
-            return View(plataforma);
+            return View(framework);
         }
 
-        // GET: Plataformas/Create
+        // GET: Frameworks/Create
         public IActionResult Create()
         {
-            ViewData["Framework"] = new SelectList(_context.Frameworks, "Id", "Apelido");
             return View();
         }
 
-        // POST: Plataformas/Create
+        // POST: Frameworks/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Apelido,Descricao,Versao,FrameworkId")] Plataforma plataforma)
+        public async Task<IActionResult> Create([Bind("Id,Apelido,Descricao,Versao")] Framework framework)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(plataforma);
+                _context.Add(framework);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["FrameworkId"] = new SelectList(_context.Frameworks, "Id", "Apelido", plataforma.FrameworkId);
-            return View(plataforma);
+            return View(framework);
         }
 
-        // GET: Plataformas/Edit/5
+        // GET: Frameworks/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
-            if (id == null || _context.Plataformas == null)
+            if (id == null || _context.Frameworks == null)
             {
                 return NotFound();
             }
 
-            var plataforma = await _context.Plataformas.FindAsync(id);
-            if (plataforma == null)
+            var framework = await _context.Frameworks.FindAsync(id);
+            if (framework == null)
             {
                 return NotFound();
             }
-            ViewData["FrameworkId"] = new SelectList(_context.Frameworks, "Id", "Apelido", plataforma.FrameworkId);
-            return View(plataforma);
+            return View(framework);
         }
 
-        // POST: Plataformas/Edit/5
+        // POST: Frameworks/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Apelido,Descricao,Versao,FrameworkId")] Plataforma plataforma)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Apelido,Descricao,Versao")] Framework framework)
         {
-            if (id != plataforma.Id)
+            if (id != framework.Id)
             {
                 return NotFound();
             }
@@ -98,12 +94,12 @@ namespace Knowledgebase.Controllers
             {
                 try
                 {
-                    _context.Update(plataforma);
+                    _context.Update(framework);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!PlataformaExists(plataforma.Id))
+                    if (!FrameworkExists(framework.Id))
                     {
                         return NotFound();
                     }
@@ -114,51 +110,49 @@ namespace Knowledgebase.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["FrameworkId"] = new SelectList(_context.Frameworks, "Id", "Apelido", plataforma.FrameworkId);
-            return View(plataforma);
+            return View(framework);
         }
 
-        // GET: Plataformas/Delete/5
+        // GET: Frameworks/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
-            if (id == null || _context.Plataformas == null)
+            if (id == null || _context.Frameworks == null)
             {
                 return NotFound();
             }
 
-            var plataforma = await _context.Plataformas
-                .Include(p => p.Framework)
+            var framework = await _context.Frameworks
                 .FirstOrDefaultAsync(m => m.Id == id);
-            if (plataforma == null)
+            if (framework == null)
             {
                 return NotFound();
             }
 
-            return View(plataforma);
+            return View(framework);
         }
 
-        // POST: Plataformas/Delete/5
+        // POST: Frameworks/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            if (_context.Plataformas == null)
+            if (_context.Frameworks == null)
             {
-                return Problem("Entity set 'ApplicationDbContext.Plataformas'  is null.");
+                return Problem("Entity set 'ApplicationDbContext.Frameworks'  is null.");
             }
-            var plataforma = await _context.Plataformas.FindAsync(id);
-            if (plataforma != null)
+            var framework = await _context.Frameworks.FindAsync(id);
+            if (framework != null)
             {
-                _context.Plataformas.Remove(plataforma);
+                _context.Frameworks.Remove(framework);
             }
             
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        private bool PlataformaExists(int id)
+        private bool FrameworkExists(int id)
         {
-          return (_context.Plataformas?.Any(e => e.Id == id)).GetValueOrDefault();
+          return (_context.Frameworks?.Any(e => e.Id == id)).GetValueOrDefault();
         }
     }
 }
