@@ -9,7 +9,7 @@ namespace KnowledgeBase.Models
         public int Id { get; set; }
 
         [Required]
-        [StringLength(4)]
+        [StringLength(6)]
         public string? Apelido { get; set; } = string.Empty;
 
         [Required]
