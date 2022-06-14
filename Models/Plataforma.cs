@@ -19,9 +19,5 @@ namespace KnowledgeBase.Models
         [Required]
         [StringLength(16)]
         public string? Versao { get; set; } = string.Empty;
-
-        public int FrameworkId { get; set; }
-
-        public Framework? Framework { get; set; }
     }
 }
