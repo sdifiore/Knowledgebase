@@ -16,16 +16,6 @@ namespace KnowledgeBase.Models
         [StringLength(10240)]
         public string? Corpo { get; set; } = string.Empty;
 
-        [Required]
-        [StringLength(1040)]
-        public HashSet<Autor>? Autores { get; set; }
-
         public DateTime DiaMesAno { get; set; }
-
-        public HashSet<Fonte>? Fontes { get; set; }
-
-        public HashSet<Framework>? Frameworks { get; set; }
-
-        public HashSet<Plataforma>? Plataformas { get; set; }
     }
 }

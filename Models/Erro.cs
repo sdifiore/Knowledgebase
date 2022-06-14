@@ -15,14 +15,5 @@ namespace KnowledgeBase.Models
         [Required]
         [StringLength(256)]
         public string? Codigo { get; set; } = string.Empty;
-
-        [StringLength(64)]
-        public string? Fonte { get; set; } = string.Empty;
-
-        public List<Autor>? Autores { get; set; }
-
-        public HashSet<Fonte>? Fontes { get; set; }
-
-        public HashSet<Plataforma>? Plataformas { get; set; }
     }
 }
