@@ -17,5 +17,7 @@ namespace KnowledgeBase.Models
         public string? Codigo { get; set; } = string.Empty;
 
         public ICollection<Fonte>? Fontes { get; set; }
+
+        public ICollection<Plataforma>? Plataformas { get; set; }        
     }
 }

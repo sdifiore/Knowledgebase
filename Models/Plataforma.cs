@@ -21,5 +21,7 @@ namespace KnowledgeBase.Models
         public string? Versao { get; set; } = string.Empty;
 
         public ICollection<Framework>? Frames { get; set; }
+
+        public Erro? Erro { get; set; }
     }
 }
