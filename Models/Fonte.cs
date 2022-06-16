@@ -12,6 +12,8 @@ namespace KnowledgeBase.Models
         [Required]
         [StringLength(100)]
         public string? Name { get; set; }
+        
+        public ICollection<Autor>? Autores { get; set; }
 
         public Erro? Erro { get; set; }
     }
