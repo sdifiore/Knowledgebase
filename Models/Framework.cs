@@ -19,5 +19,7 @@ namespace KnowledgeBase.Models
         [Required]
         [StringLength(16)]
         public string? Versao { get; set; } = string.Empty;
+
+        public Plataforma? Plataforma { get; set; }
     }
 }
