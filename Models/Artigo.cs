@@ -17,5 +17,7 @@ namespace KnowledgeBase.Models
         public string? Corpo { get; set; } = string.Empty;
 
         public DateTime DiaMesAno { get; set; }
+
+        public ICollection<Fonte>? Fontes { get; set; }
     }
 }

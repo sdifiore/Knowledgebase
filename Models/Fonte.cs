@@ -15,6 +15,8 @@ namespace KnowledgeBase.Models
         
         public ICollection<Autor>? Autores { get; set; }
 
+        public Artigo? Artigo { get; set; }
+
         public Erro? Erro { get; set; }
     }
 }
