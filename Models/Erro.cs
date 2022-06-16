@@ -15,5 +15,7 @@ namespace KnowledgeBase.Models
         [Required]
         [StringLength(256)]
         public string? Codigo { get; set; } = string.Empty;
+
+        public ICollection<Fonte>? Fontes { get; set; }
     }
 }
