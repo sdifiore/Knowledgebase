@@ -13,8 +13,6 @@ namespace KnowledgeBase.Models
         [StringLength(100)]
         public string? Name { get; set; }
 
-        public Artigo? Artigo { get; set; }
-
         public Erro? Erro { get; set; }
     }
 }
