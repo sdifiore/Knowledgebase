@@ -1,6 +1,7 @@
 ﻿using KnowledgeBase.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Knowledgebase.Models;
 
 namespace Knowledgebase.Data
 {
@@ -12,7 +13,6 @@ namespace Knowledgebase.Data
         }
 
         public DbSet<Artigo>? Artigos { get; set; }
-        public DbSet<Autor>? Autores { get; set; }
         public DbSet<Erro>? Erros { get; set; }
         public DbSet<Fonte>? Fontes { get; set; }
         public DbSet<Framework>? Frameworks { get; set; }

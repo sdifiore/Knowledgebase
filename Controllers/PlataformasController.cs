@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using KnowledgeBase.Models;
 using Knowledgebase.Data;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace Knowledgebase.Controllers
 {
@@ -43,6 +44,8 @@ namespace Knowledgebase.Controllers
         // GET: Plataformas/Create
         public IActionResult Create()
         {
+            ViewData["Framework"] = new SelectList(_context.Frameworks, "Id", "Apelido");
+
             return View();
         }
 

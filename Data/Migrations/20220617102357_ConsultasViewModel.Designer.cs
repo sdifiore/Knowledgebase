@@ -4,6 +4,7 @@ using Knowledgebase.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Knowledgebase.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220617102357_ConsultasViewModel")]
+    partial class ConsultasViewModel
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -46,6 +48,57 @@ namespace Knowledgebase.Data.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Artigos");
+                });
+
+            modelBuilder.Entity("KnowledgeBase.Models.Autor", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<int?>("FonteId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("FonteId");
+
+                    b.ToTable("Autores");
+                });
+
+            modelBuilder.Entity("Knowledgebase.Models.Consulta", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<int>("ChavePesquisaId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("FrameworkId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("PlataformaId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ChavePesquisaId");
+
+                    b.HasIndex("FrameworkId");
+
+                    b.HasIndex("PlataformaId");
+
+                    b.ToTable("Consulta");
                 });
 
             modelBuilder.Entity("KnowledgeBase.Models.Erro", b =>
@@ -367,6 +420,42 @@ namespace Knowledgebase.Data.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
+            modelBuilder.Entity("KnowledgeBase.Models.Autor", b =>
+                {
+                    b.HasOne("KnowledgeBase.Models.Fonte", "Fonte")
+                        .WithMany("Autores")
+                        .HasForeignKey("FonteId");
+
+                    b.Navigation("Fonte");
+                });
+
+            modelBuilder.Entity("Knowledgebase.Models.Consulta", b =>
+                {
+                    b.HasOne("KnowledgeBase.Models.Erro", "ChavePesquisa")
+                        .WithMany()
+                        .HasForeignKey("ChavePesquisaId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("KnowledgeBase.Models.Framework", "Framework")
+                        .WithMany()
+                        .HasForeignKey("FrameworkId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("KnowledgeBase.Models.Plataforma", "Plataforma")
+                        .WithMany()
+                        .HasForeignKey("PlataformaId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("ChavePesquisa");
+
+                    b.Navigation("Framework");
+
+                    b.Navigation("Plataforma");
+                });
+
             modelBuilder.Entity("KnowledgeBase.Models.Fonte", b =>
                 {
                     b.HasOne("KnowledgeBase.Models.Artigo", "Artigo")
@@ -461,6 +550,11 @@ namespace Knowledgebase.Data.Migrations
                     b.Navigation("Fontes");
 
                     b.Navigation("Plataformas");
+                });
+
+            modelBuilder.Entity("KnowledgeBase.Models.Fonte", b =>
+                {
+                    b.Navigation("Autores");
                 });
 
             modelBuilder.Entity("KnowledgeBase.Models.Plataforma", b =>

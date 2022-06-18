@@ -18,6 +18,6 @@ namespace KnowledgeBase.Models
 
         public ICollection<Fonte>? Fontes { get; set; }
 
-        public ICollection<Plataforma>? Plataformas { get; set; }        
+        public ICollection<Plataforma>? Plataformas { get; set; }
     }
 }
