@@ -12,8 +12,6 @@ namespace Knowledgebase.Data
         {
         }
         
-        public DbSet<Erro>? Erros { get; set; }
-        public DbSet<Fonte>? Fontes { get; set; }
         public DbSet<Framework>? Frameworks { get; set; }
         public DbSet<Plataforma>? Plataformas { get; set; }
     }
