@@ -6,6 +6,10 @@ namespace Knowledgebase.Models
     [Table("Plataformas")]
     public class Plataforma
     {
+        public Plataforma()
+        {
+            Frameworks = new HashSet<Framework>();
+        }
 
         [Key]
         public int Id { get; set; }
@@ -18,5 +22,7 @@ namespace Knowledgebase.Models
         [StringLength(16)]
         public string? Versao { get; set; } = null;
 
+        [InverseProperty(nameof(Framework.PlataformaNavigation))]
+        public virtual ICollection<Framework> Frameworks { get; set; }
     }
 }

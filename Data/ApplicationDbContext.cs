@@ -15,5 +15,10 @@ namespace Knowledgebase.Data
         
         
         public DbSet<Plataforma>? Plataforma { get; set; }
+        
+        
+        
+        
+        public DbSet<Knowledgebase.Models.Framework>? Framework { get; set; }
     }
 }
