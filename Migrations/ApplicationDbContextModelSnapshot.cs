@@ -4,18 +4,16 @@ using Knowledgebase.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
-using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
 
-namespace Knowledgebase.Data.Migrations
+namespace Knowledgebase.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20220618224423_RemoveFontesInAll")]
-    partial class RemoveFontesInAll
+    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
     {
-        protected override void BuildTargetModel(ModelBuilder modelBuilder)
+        protected override void BuildModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -24,63 +22,7 @@ namespace Knowledgebase.Data.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
 
-            modelBuilder.Entity("KnowledgeBase.Models.Erro", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
-
-                    b.Property<string>("Codigo")
-                        .IsRequired()
-                        .HasMaxLength(256)
-                        .HasColumnType("nvarchar(256)");
-
-                    b.Property<string>("Nome")
-                        .IsRequired()
-                        .HasMaxLength(64)
-                        .HasColumnType("nvarchar(64)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Erros");
-                });
-
-            modelBuilder.Entity("KnowledgeBase.Models.Framework", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
-
-                    b.Property<string>("Apelido")
-                        .IsRequired()
-                        .HasMaxLength(6)
-                        .HasColumnType("nvarchar(6)");
-
-                    b.Property<string>("Descricao")
-                        .IsRequired()
-                        .HasMaxLength(64)
-                        .HasColumnType("nvarchar(64)");
-
-                    b.Property<int?>("PlataformaId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Versao")
-                        .IsRequired()
-                        .HasMaxLength(16)
-                        .HasColumnType("nvarchar(16)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("PlataformaId");
-
-                    b.ToTable("Frameworks");
-                });
-
-            modelBuilder.Entity("KnowledgeBase.Models.Plataforma", b =>
+            modelBuilder.Entity("Knowledgebase.Models.Plataforma", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -98,17 +40,11 @@ namespace Knowledgebase.Data.Migrations
                         .HasMaxLength(64)
                         .HasColumnType("nvarchar(64)");
 
-                    b.Property<int?>("ErroId")
-                        .HasColumnType("int");
-
                     b.Property<string>("Versao")
-                        .IsRequired()
                         .HasMaxLength(16)
                         .HasColumnType("nvarchar(16)");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("ErroId");
 
                     b.ToTable("Plataformas");
                 });
@@ -315,24 +251,6 @@ namespace Knowledgebase.Data.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
-            modelBuilder.Entity("KnowledgeBase.Models.Framework", b =>
-                {
-                    b.HasOne("KnowledgeBase.Models.Plataforma", "Plataforma")
-                        .WithMany("Frames")
-                        .HasForeignKey("PlataformaId");
-
-                    b.Navigation("Plataforma");
-                });
-
-            modelBuilder.Entity("KnowledgeBase.Models.Plataforma", b =>
-                {
-                    b.HasOne("KnowledgeBase.Models.Erro", "Erro")
-                        .WithMany("Plataformas")
-                        .HasForeignKey("ErroId");
-
-                    b.Navigation("Erro");
-                });
-
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
                 {
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole", null)
@@ -382,16 +300,6 @@ namespace Knowledgebase.Data.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-                });
-
-            modelBuilder.Entity("KnowledgeBase.Models.Erro", b =>
-                {
-                    b.Navigation("Plataformas");
-                });
-
-            modelBuilder.Entity("KnowledgeBase.Models.Plataforma", b =>
-                {
-                    b.Navigation("Frames");
                 });
 #pragma warning restore 612, 618
         }

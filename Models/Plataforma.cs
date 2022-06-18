@@ -1,27 +1,22 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace KnowledgeBase.Models
+namespace Knowledgebase.Models
 {
     [Table("Plataformas")]
     public class Plataforma
     {
+
+        [Key]
         public int Id { get; set; }
-
-        [Required]
         [StringLength(4)]
-        public string? Apelido { get; set; } = string.Empty;
+        public string Apelido { get; set; } = null!;
 
-        [Required]
         [StringLength(64)]
-        public string? Descricao { get; set; } = string.Empty;
+        public string Descricao { get; set; } = null!;
 
-        [Required]
         [StringLength(16)]
-        public string? Versao { get; set; } = string.Empty;
+        public string? Versao { get; set; } = null;
 
-        public ICollection<Framework>? Frames { get; set; }
-
-        public Erro? Erro { get; set; }
     }
 }

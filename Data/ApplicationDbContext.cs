@@ -1,5 +1,4 @@
-﻿using KnowledgeBase.Models;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Knowledgebase.Models;
 
@@ -12,7 +11,9 @@ namespace Knowledgebase.Data
         {
         }
         
-        public DbSet<Framework>? Frameworks { get; set; }
-        public DbSet<Plataforma>? Plataformas { get; set; }
+        
+        
+        
+        public DbSet<Plataforma>? Plataforma { get; set; }
     }
 }
