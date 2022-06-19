@@ -20,7 +20,7 @@ namespace Knowledgebase.Data
         public DbSet<Fonte>? Fonte { get; set; }
         
         public DbSet<Artigo>? Artigo { get; set; }
-        
+
         public DbSet<Autor>? Autor { get; set; }
     }
 }
