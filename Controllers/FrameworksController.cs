@@ -1,4 +1,8 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Knowledgebase.Data;
@@ -53,16 +57,12 @@ namespace Knowledgebase.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Plataforma,Apelido,Descricao,Versao")] Framework framework)
+        public async Task<IActionResult> Create(Framework framework)
         {
-            if (ModelState.IsValid)
-            {
-                _context.Add(framework);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
-            }
-            ViewData["Plataforma"] = new SelectList(_context.Plataforma, "Id", "Id", framework.Plataforma);
-            return View(framework);
+            _context.Add(framework);
+            await _context.SaveChangesAsync();
+            
+            return RedirectToAction(nameof(Index));
         }
 
         // GET: Frameworks/Edit/5
@@ -87,7 +87,7 @@ namespace Knowledgebase.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Plataforma,Apelido,Descricao,Versao")] Framework framework)
+        public async Task<IActionResult> Edit(int id, Framework framework)
         {
             if (id != framework.Id)
             {
@@ -96,22 +96,9 @@ namespace Knowledgebase.Controllers
 
             if (ModelState.IsValid)
             {
-                try
-                {
-                    _context.Update(framework);
-                    await _context.SaveChangesAsync();
-                }
-                catch (DbUpdateConcurrencyException)
-                {
-                    if (!FrameworkExists(framework.Id))
-                    {
-                        return NotFound();
-                    }
-                    else
-                    {
-                        throw;
-                    }
-                }
+                _context.Update(framework);
+                await _context.SaveChangesAsync();
+                
                 return RedirectToAction(nameof(Index));
             }
             ViewData["Plataforma"] = new SelectList(_context.Plataforma, "Id", "Id", framework.Plataforma);

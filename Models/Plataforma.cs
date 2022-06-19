@@ -22,7 +22,13 @@ namespace Knowledgebase.Models
         [StringLength(16)]
         public string? Versao { get; set; } = null;
 
-        [InverseProperty(nameof(Framework.PlataformaNavigation))]
+        private string showItem;
+
+        public string ShowItem
+        {
+            get { return Descricao + " vs. " + Versao; }
+        }
+
         public virtual ICollection<Framework> Frameworks { get; set; }
     }
 }

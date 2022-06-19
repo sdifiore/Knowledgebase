@@ -1,11 +1,18 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using KnowledgeBase.Models;
+
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Knowledgebase.Models
-{
+{   
     [Table("Frameworks")]
     public class Framework
     {
+        public Framework()
+        {
+            Erros = new HashSet<Erro>();
+        }
+        
         [Key]
         public int Id { get; set; }
 
@@ -23,5 +30,7 @@ namespace Knowledgebase.Models
         [ForeignKey(nameof(Plataforma))]
         [InverseProperty("Frameworks")]
         public virtual Plataforma PlataformaNavigation { get; set; } = null!;
+        
+        public ICollection<Erro> Erros { get; set; }
     }
 }
