@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Knowledgebase.Data;
@@ -61,7 +57,7 @@ namespace Knowledgebase.Controllers
         {
             _context.Add(framework);
             await _context.SaveChangesAsync();
-            
+
             return RedirectToAction(nameof(Index));
         }
 
@@ -94,58 +90,55 @@ namespace Knowledgebase.Controllers
                 return NotFound();
             }
 
-            if (ModelState.IsValid)
             {
                 _context.Update(framework);
                 await _context.SaveChangesAsync();
-                
+
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["Plataforma"] = new SelectList(_context.Plataforma, "Id", "Id", framework.Plataforma);
-            return View(framework);
-        }
 
-        // GET: Frameworks/Delete/5
-        public async Task<IActionResult> Delete(int? id)
-        {
-            if (id == null || _context.Framework == null)
+            // GET: Frameworks/Delete/5
+            async Task<IActionResult> Delete(int? id)
             {
-                return NotFound();
+                if (id == null || _context.Framework == null)
+                {
+                    return NotFound();
+                }
+
+                var framework = await _context.Framework
+                    .Include(f => f.PlataformaNavigation)
+                    .FirstOrDefaultAsync(m => m.Id == id);
+                if (framework == null)
+                {
+                    return NotFound();
+                }
+
+                return View(framework);
             }
 
-            var framework = await _context.Framework
-                .Include(f => f.PlataformaNavigation)
-                .FirstOrDefaultAsync(m => m.Id == id);
-            if (framework == null)
+            // POST: Frameworks/Delete/5
+            [HttpPost, ActionName("Delete")]
+            [ValidateAntiForgeryToken]
+            async Task<IActionResult> DeleteConfirmed(int id)
             {
-                return NotFound();
+                if (_context.Framework == null)
+                {
+                    return Problem("Entity set 'ApplicationDbContext.Framework'  is null.");
+                }
+                var framework = await _context.Framework.FindAsync(id);
+                if (framework != null)
+                {
+                    _context.Framework.Remove(framework);
+                }
+
+                await _context.SaveChangesAsync();
+                return RedirectToAction(nameof(Index));
             }
 
-            return View(framework);
-        }
-
-        // POST: Frameworks/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int id)
-        {
-            if (_context.Framework == null)
+            bool FrameworkExists(int id)
             {
-                return Problem("Entity set 'ApplicationDbContext.Framework'  is null.");
+                return (_context.Framework?.Any(e => e.Id == id)).GetValueOrDefault();
             }
-            var framework = await _context.Framework.FindAsync(id);
-            if (framework != null)
-            {
-                _context.Framework.Remove(framework);
-            }
-            
-            await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
-        }
-
-        private bool FrameworkExists(int id)
-        {
-          return (_context.Framework?.Any(e => e.Id == id)).GetValueOrDefault();
         }
     }
 }

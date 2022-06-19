@@ -1,4 +1,4 @@
-﻿@model KnowledgeBase.Models.Erro
+﻿@model Knowledgebase.Models.Erro
 
 @{
     ViewData["Title"] = "Edit";
@@ -15,11 +15,6 @@
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="Id" />
             <div class="form-group">
-                <label asp-for="FrameworkId" class="control-label"></label>
-                <select asp-for="FrameworkId" class="form-control" asp-items="ViewBag.FrameworkId"></select>
-                <span asp-validation-for="FrameworkId" class="text-danger"></span>
-            </div>
-            <div class="form-group">
                 <label asp-for="Nome" class="control-label"></label>
                 <input asp-for="Nome" class="form-control" />
                 <span asp-validation-for="Nome" class="text-danger"></span>
@@ -28,6 +23,11 @@
                 <label asp-for="Codigo" class="control-label"></label>
                 <input asp-for="Codigo" class="form-control" />
                 <span asp-validation-for="Codigo" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="FrameworkId" class="control-label"></label>
+                <select asp-for="FrameworkId" class="form-control" asp-items="ViewBag.FrameworkId"></select>
+                <span asp-validation-for="FrameworkId" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <input type="submit" value="Save" class="btn btn-primary" />

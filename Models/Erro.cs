@@ -1,17 +1,17 @@
-﻿using Knowledgebase.Models;
-
+﻿using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 
-namespace KnowledgeBase.Models
+namespace Knowledgebase.Models
 {
     [Table("Erros")]
     public class Erro
     {
+        public Erro()
+        {
+            Fontes = new HashSet<Fonte>();
+        }
+        
         public int Id { get; set; }
-
-        public int FrameworkId { get; set; }
-
 
         [Required]
         [StringLength(64)]
@@ -20,5 +20,9 @@ namespace KnowledgeBase.Models
         [Required]
         [StringLength(256)]
         public string? Codigo { get; set; } = string.Empty;
+
+        public int FrameworkId { get; set; }
+
+        public Framework Framework { get; set; }
     }
 }

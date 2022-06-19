@@ -1,7 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Knowledgebase.Models;
-using KnowledgeBase.Models;
 
 namespace Knowledgebase.Data
 {
@@ -16,6 +15,8 @@ namespace Knowledgebase.Data
         
         public DbSet<Framework>? Framework { get; set; }
         
-        public DbSet<Erro>? Erro { get; set; }
+        public DbSet<Knowledgebase.Models.Erro>? Erro { get; set; }
+        
+        //public DbSet<Erro>? Erro { get; set; }
     }
 }

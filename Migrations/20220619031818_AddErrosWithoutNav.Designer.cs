@@ -4,6 +4,7 @@ using Knowledgebase.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Knowledgebase.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220619031818_AddErrosWithoutNav")]
+    partial class AddErrosWithoutNav
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -30,18 +32,25 @@ namespace Knowledgebase.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<string>("Codigo")
+                    b.Property<string>("Apelido")
                         .IsRequired()
-                        .HasMaxLength(256)
-                        .HasColumnType("nvarchar(256)");
+                        .HasMaxLength(6)
+                        .HasColumnType("nvarchar(6)");
 
-                    b.Property<int>("FrameworkId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Nome")
+                    b.Property<string>("Descricao")
                         .IsRequired()
                         .HasMaxLength(64)
                         .HasColumnType("nvarchar(64)");
+
+                    b.Property<int>("ErroId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("FrameworkId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Versao")
+                        .HasMaxLength(10)
+                        .HasColumnType("nvarchar(10)");
 
                     b.HasKey("Id");
 
@@ -313,13 +322,9 @@ namespace Knowledgebase.Migrations
 
             modelBuilder.Entity("Knowledgebase.Models.Erro", b =>
                 {
-                    b.HasOne("Knowledgebase.Models.Framework", "Framework")
+                    b.HasOne("Knowledgebase.Models.Framework", null)
                         .WithMany("Erros")
-                        .HasForeignKey("FrameworkId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Framework");
+                        .HasForeignKey("FrameworkId");
                 });
 
             modelBuilder.Entity("Knowledgebase.Models.Framework", b =>
