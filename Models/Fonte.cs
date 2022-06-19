@@ -6,9 +6,10 @@ namespace Knowledgebase.Models
     [Table("Fontes")]
     public class Fonte
     {
+
         public Fonte()
         {
-            Erros = 
+            Artigos = new HashSet<Artigo>();
         }
         
         public int Id { get; set; }
@@ -19,6 +20,8 @@ namespace Knowledgebase.Models
 
         public int ErroId { get; set; }
 
-        public ICollection<Erro> Erros { get; set; }
+        public Erro Erro { get; set; }
+
+        public ICollection<Artigo> Artigos { get; set; }
     }
 }

@@ -4,6 +4,7 @@ using Knowledgebase.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Knowledgebase.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220619045108_AddArtigosNavStd")]
+    partial class AddArtigosNavStd
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -48,29 +50,6 @@ namespace Knowledgebase.Migrations
                     b.HasIndex("FonteId");
 
                     b.ToTable("Artigos");
-                });
-
-            modelBuilder.Entity("Knowledgebase.Models.Autor", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
-
-                    b.Property<int>("ArtigoId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("ArtigoId");
-
-                    b.ToTable("Autores");
                 });
 
             modelBuilder.Entity("Knowledgebase.Models.Erro", b =>
@@ -394,17 +373,6 @@ namespace Knowledgebase.Migrations
                         .IsRequired();
 
                     b.Navigation("Fonte");
-                });
-
-            modelBuilder.Entity("Knowledgebase.Models.Autor", b =>
-                {
-                    b.HasOne("Knowledgebase.Models.Artigo", "Artigo")
-                        .WithMany()
-                        .HasForeignKey("ArtigoId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Artigo");
                 });
 
             modelBuilder.Entity("Knowledgebase.Models.Erro", b =>

@@ -4,6 +4,7 @@ using Knowledgebase.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Knowledgebase.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220619050056_AddAutoresNavStd")]
+    partial class AddAutoresNavStd
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -61,6 +63,9 @@ namespace Knowledgebase.Migrations
                     b.Property<int>("ArtigoId")
                         .HasColumnType("int");
 
+                    b.Property<int?>("FonteId")
+                        .HasColumnType("int");
+
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasMaxLength(100)
@@ -69,6 +74,8 @@ namespace Knowledgebase.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("ArtigoId");
+
+                    b.HasIndex("FonteId");
 
                     b.ToTable("Autores");
                 });
@@ -404,7 +411,13 @@ namespace Knowledgebase.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("Knowledgebase.Models.Fonte", "Fonte")
+                        .WithMany()
+                        .HasForeignKey("FonteId");
+
                     b.Navigation("Artigo");
+
+                    b.Navigation("Fonte");
                 });
 
             modelBuilder.Entity("Knowledgebase.Models.Erro", b =>

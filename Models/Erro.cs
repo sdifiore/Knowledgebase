@@ -24,5 +24,7 @@ namespace Knowledgebase.Models
         public int FrameworkId { get; set; }
 
         public Framework Framework { get; set; }
+
+        public ICollection<Fonte> Fontes { get; set; }
     }
 }

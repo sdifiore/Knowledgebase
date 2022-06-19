@@ -4,6 +4,7 @@ using Knowledgebase.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Knowledgebase.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220619044007_AddFontesNavStd")]
+    partial class AddFontesNavStd
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -21,57 +23,6 @@ namespace Knowledgebase.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
-
-            modelBuilder.Entity("Knowledgebase.Models.Artigo", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
-
-                    b.Property<string>("Chamada")
-                        .IsRequired()
-                        .HasMaxLength(64)
-                        .HasColumnType("nvarchar(64)");
-
-                    b.Property<string>("Corpo")
-                        .IsRequired()
-                        .HasMaxLength(10240)
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("FonteId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("FonteId");
-
-                    b.ToTable("Artigos");
-                });
-
-            modelBuilder.Entity("Knowledgebase.Models.Autor", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
-
-                    b.Property<int>("ArtigoId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("ArtigoId");
-
-                    b.ToTable("Autores");
-                });
 
             modelBuilder.Entity("Knowledgebase.Models.Erro", b =>
                 {
@@ -385,28 +336,6 @@ namespace Knowledgebase.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
-            modelBuilder.Entity("Knowledgebase.Models.Artigo", b =>
-                {
-                    b.HasOne("Knowledgebase.Models.Fonte", "Fonte")
-                        .WithMany("Artigos")
-                        .HasForeignKey("FonteId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Fonte");
-                });
-
-            modelBuilder.Entity("Knowledgebase.Models.Autor", b =>
-                {
-                    b.HasOne("Knowledgebase.Models.Artigo", "Artigo")
-                        .WithMany()
-                        .HasForeignKey("ArtigoId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Artigo");
-                });
-
             modelBuilder.Entity("Knowledgebase.Models.Erro", b =>
                 {
                     b.HasOne("Knowledgebase.Models.Framework", "Framework")
@@ -494,11 +423,6 @@ namespace Knowledgebase.Migrations
             modelBuilder.Entity("Knowledgebase.Models.Erro", b =>
                 {
                     b.Navigation("Fontes");
-                });
-
-            modelBuilder.Entity("Knowledgebase.Models.Fonte", b =>
-                {
-                    b.Navigation("Artigos");
                 });
 
             modelBuilder.Entity("Knowledgebase.Models.Framework", b =>

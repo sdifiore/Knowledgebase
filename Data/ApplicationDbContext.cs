@@ -15,8 +15,12 @@ namespace Knowledgebase.Data
         
         public DbSet<Framework>? Framework { get; set; }
         
-        public DbSet<Knowledgebase.Models.Erro>? Erro { get; set; }
+        public DbSet<Erro>? Erro { get; set; }
         
-        //public DbSet<Erro>? Erro { get; set; }
+        public DbSet<Fonte>? Fonte { get; set; }
+        
+        public DbSet<Artigo>? Artigo { get; set; }
+        
+        public DbSet<Autor>? Autor { get; set; }
     }
 }

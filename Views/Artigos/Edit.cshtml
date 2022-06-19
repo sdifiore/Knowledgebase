@@ -1,0 +1,45 @@
+﻿@model Knowledgebase.Models.Artigo
+
+@{
+    ViewData["Title"] = "Edit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Edit</h1>
+
+<h4>Artigo</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Id" />
+            <div class="form-group">
+                <label asp-for="Chamada" class="control-label"></label>
+                <input asp-for="Chamada" class="form-control" />
+                <span asp-validation-for="Chamada" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Corpo" class="control-label"></label>
+                <input asp-for="Corpo" class="form-control" />
+                <span asp-validation-for="Corpo" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="FonteId" class="control-label"></label>
+                <select asp-for="FonteId" class="form-control" asp-items="ViewBag.FonteId"></select>
+                <span asp-validation-for="FonteId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
