@@ -48,7 +48,7 @@ namespace Knowledgebase.Controllers
         // GET: Frameworks/Create
         public IActionResult Create()
         {
-            ViewData["Plataforma"] = new SelectList(_context.Plataforma, "Id", "Id");
+            ViewData["Plataforma"] = new SelectList(_context.Plataforma, "Id", "ShowItem");
             return View();
         }
 
