@@ -15,7 +15,7 @@
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="Id" />
             <div class="form-group">
-                <label asp-for="Plataforma" class="control-label">Qual a questão?</label>
+                <label asp-for="Plataforma" class="control-label">Plataforma Selecionada:</label>
                 <select asp-for="Plataforma" class="form-control" asp-items="ViewBag.Plataforma"></select>
                 <span asp-validation-for="Plataforma" class="text-danger"></span>
             </div>
